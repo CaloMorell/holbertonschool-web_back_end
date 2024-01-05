@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
-"""
-This function takes a list of integers and floats and returns their sum as a float.
-"""
+""" Complex types - list of floats """
 from typing import List
 
 
 def sum_list(input_list: List[float]) -> float:
-    """
-    This function takes a list of integers and floats and returns their sum as a float.
-    """
+    """ type-annotated function sum_list which takes a list input_list of
+        floats as argument and returns their sum as a float. """
     return sum(input_list)
