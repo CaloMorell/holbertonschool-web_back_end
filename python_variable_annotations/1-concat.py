@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
+""" Basic annotations - concat """
 
-"""
-Esta función toma dos cadenas como entrada y devuelve su concatenación.
-"""
 
 def concat(str1: str, str2: str) -> str:
-    """Concatena dos cadenas."""
-    return (str1 + str2)
+    """ type-annotated function concat that takes a string str1 and a string
+        str2 as arguments and returns a concatenated string """
+    return str1 + str2
