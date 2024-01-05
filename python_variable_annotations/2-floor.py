@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
+""" Basic annotations - floor """
 
-
-"""
-    Esta función toma un número flotante como entrada y devuelve su valor entero truncado (piso).
-"""
 
 def floor(n: float) -> int:
-    """ Devuelve el valor entero truncado de un número flotante. """
+    """ type-annotated function floor which takes a float n as argument
+        and returns the floor of the float. """
     return int(n)
