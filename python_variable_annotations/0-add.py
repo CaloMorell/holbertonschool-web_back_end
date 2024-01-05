@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+""" Basic annotations - add """
 
-"""Esta función toma dos números flotantes como entrada y devuelve su suma."""
 
 def add(a: float, b: float) -> float:
-    """Suma dos números."""
-    return (a + b)
+    """ type-annotated function add that takes a float a and a float b
+        as arguments and returns their sum as a float.
+    """
+    return a + b
