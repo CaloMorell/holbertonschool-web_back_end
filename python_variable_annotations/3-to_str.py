@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
+""" Basic annotations - to string """
 
-
-"""
-This function takes a float number as input and returns
-its string representation.
-"""
 
 def to_str(n: float) -> str:
-    """ Returns the string representation of a float number. """
-    return (str(n))
+    """ type-annotated function to_str that takes a float n as argument and
+        returns the string representation of the float. """
+    return str(n)
