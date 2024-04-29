@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-''' Hypermedia pagination '''
+"""
+Module defines a function that  uses hypermedia pagination.
+"""
 import csv
 import math
-from typing import Dict, List, Tuple
+from typing import List, Tuple
+
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """Returns a tuple containing the start and end document indexes"""
+    start = (page - 1) * page_size
+    end = start + page_size
+    return (start, end)
 
 
 class Server:
@@ -25,36 +34,25 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        ''' def get page '''
-        assert type(page_size) is int and type(page) is int
-        assert page > 0
-        assert page_size > 0
-        self.dataset()
-        i = index_range(page, page_size)
-        if i[0] >= len(self.__dataset):
-            return []
-        else:
-            return self.__dataset[i[0]:i[1]]
+        """Returns a list of lists of strings containing data from dataset
+        """
+        assert type(page) is int and page > 0
+        assert type(page_size) is int and page_size > 0
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
-        ''' Def get hyper '''
-        dataset_items = len(self.dataset())
-        data = self.get_page(page, page_size)
-        total_pages = math.ceil(dataset_items / page_size)
+        start, end = index_range(page, page_size)
+        return self.dataset()[start:end]
 
-        p = {
-            "page": page,
-            "page_size": page_size if page < total_pages else 0,
-            "data": data,
-            "next_page": page + 1 if page + 1 < total_pages else None,
-            "prev_page": page - 1 if page - 1 > 0 else None,
-            "total_pages": total_pages
-            }
-        return p
-
-
-def index_range(page: int, page_size: int) -> Tuple[int, int]:
-    ''' Def index range '''
-    index = page * page_size - page_size
-    index_1 = index + page_size
-    return (index, index_1)
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """
+        Returns a dictionary containing the following
+        key-value pairs.
+        """
+        total_pages = math.ceil(len(self.dataset()) / page_size)
+        return {
+            'page_size': len(self.get_page(page, page_size)),
+            'page': page,
+            'data': self.get_page(page, page_size),
+            'next_page': page + 1 if page < total_pages else None,
+            'prev_page': page - 1 if page > 1 else None,
+            'total_pages': total_pages
+        }

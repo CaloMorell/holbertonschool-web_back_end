@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-''' Simple helper function '''
-from typing import Tuple
+"""
+Module defines a function returns a tuple containing the start and end
+document indexes to paginate the collection.
+"""
+import typing
 
 
-def index_range(page: int, page_size: int) -> Tuple[int, int]:
-    ''' Def index range '''
-    index = page * page_size - page_size
-    index_1 = index + page_size
-    return (index, index_1)
+def index_range(page: int, page_size: int) -> typing.Tuple[int, int]:
+    """Returns a tuple containing the start and end document indexes"""
+    start = (page - 1) * page_size
+    end = start + page_size
+    return (start, end)
